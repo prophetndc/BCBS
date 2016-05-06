@@ -1,0 +1,3 @@
+SELECT DISTINCT UserID
+FROM Rental
+WHERE Quantity > 1

@@ -1,0 +1,50 @@
+<!doctype html>
+<head>
+  <!-- <script src="angular.min.js"></script> -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+</head>
+<body ng-app="testApp">
+  <script>
+  angular.module('testApp', [])
+    .controller('capCtrl', ['$scope', function($scope) {
+	  $scope.users = [];
+      $scope.submit = function() {
+		if ($scope.user) {
+		    $scope.users.push(this.user);
+			$scope.user = null;
+		};
+      };
+	  $scope.show = function() {
+		$scope.active = !$scope.active;
+	  };
+    }]);
+</script>
+<div ng-controller="capCtrl">
+<form ng-submit="submit()" ng-hide="active">
+Add users to list. Submit to see list.</br></br>
+  First Name:
+  <input type="text" ng-model="user.fname" /></br>
+  Last Name:  
+  <input type="text" ng-model="user.lname" /></br>
+  Address:  
+  <input type="text" ng-model="user.address" /></br>
+  City:
+  <input type="text" ng-model="user.city" /></br>
+  State:
+  <input type="text" ng-model="user.state" /></br>
+  Zip:  
+  <input type="text" ng-model="user.zip" /></br></br>
+  <input type="submit" id="add" value="Add" />
+  <button ng-click="show()">Submit</button> 
+</form>
+<div ng-show="active" >
+  <div ng-repeat="display in users">
+  {{display.fname}} {{display.lname}}</br>
+  {{display.address}}</br>
+  {{display.city}}, {{display.state}} {{display.zip}} </br></br>
+  </div>
+  <button ng-click="show()">Return</button> 
+ </div>
+</div>
+</body>
+</html>
